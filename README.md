@@ -1,7 +1,3 @@
-Here's a **detailed README** for your **Book Recommendation System** using **Streamlit, FAISS, and Sentence Transformers**.
-
----
-
 
 
 
