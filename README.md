@@ -91,11 +91,11 @@ streamlit run app.py
 
 ## **📷 Screenshots**
 ### **Main Interface**
-![Screenshot]![Screenshot (63)](https://github.com/user-attachments/assets/bae90b31-7f23-4193-b06c-6926166c2da2)
+![Screenshot (63)](https://github.com/user-attachments/assets/bae90b31-7f23-4193-b06c-6926166c2da2)
 
 ### **Book Recommendations**
-![Screenshot]![Screenshot (64)](https://github.com/user-attachments/assets/5d4507c3-4f87-4e04-aa3a-16dd4b47d7ba)
-()
+![Screenshot (64)](https://github.com/user-attachments/assets/5d4507c3-4f87-4e04-aa3a-16dd4b47d7ba)
+
 
 ---
 
