@@ -12,6 +12,9 @@ TITLE_FILE = "book_titles.pkl"
 EMBEDDINGS_FILE = "embeddings.pkl"
 THUMBNAIL_FILE = "books.csv"  # Ensure this CSV has 'title' and 'thumbnail' columns
 
+st.image("https://books.google.com/books/content?id=KQZCPgAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api", width=100)
+
+
 # Load FAISS index
 @st.cache_resource
 def load_faiss_index():
