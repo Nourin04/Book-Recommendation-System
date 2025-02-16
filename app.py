@@ -21,11 +21,11 @@ def set_background(image_url):
     )
 
 # Set background image (replace with your image URL)
-set_background("https://images.pexels.com/photos/762686/pexels-photo-762686.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1https://images.pexels.com/photos/762686/pexels-photo-762686.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
+set_background("https://images.pexels.com/photos/762686/pexels-photo-762686.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
 
 # File paths
 INDEX_FILE = "book_recommender.faiss"
-TITLE_FILE = "book_titles_thumbnail (1).pkl"
+TITLE_FILE = "book_titles_thumbnail.pkl"  # Ensure correct filename
 EMBEDDINGS_FILE = "embeddings.pkl"
 
 @st.cache_resource
@@ -70,14 +70,28 @@ if selected_book:
 
     st.subheader("📖 Recommended Books:")
     for i, idx in enumerate(I[0]):
-        if idx != -1:
+        if idx != -1:  # Ensure valid index
             recommended_book = book_data[idx]
-            
+
+            # Get book details with error handling
+            title = recommended_book.get("title", "Unknown Title")
+            authors = ", ".join(recommended_book.get("authors", ["Unknown"]))
+            categories = ", ".join(recommended_book.get("categories", ["N/A"]))
+            average_rating = recommended_book.get("average_rating", "N/A")
+            ratings_count = recommended_book.get("ratings_count", "N/A")
+            description = recommended_book.get("description", "No description available.")[:300] + "..."
+            thumbnail_url = recommended_book.get("thumbnail", "")
+
             # Display book details
-            st.markdown(f"### {recommended_book['title']}")
-            st.image(recommended_book['thumbnail'], width=100)
-            st.write(f"**📚 Author(s):** {', '.join(recommended_book['authors']) if recommended_book['authors'] else 'Unknown'}")
-            st.write(f"**🏷️ Category:** {', '.join(recommended_book['categories']) if recommended_book['categories'] else 'N/A'}")
-            st.write(f"**⭐ Average Rating:** {recommended_book['average_rating']} ({recommended_book['ratings_count']} ratings)")
-            st.write(f"**📄 Description:** {recommended_book['description'][:300]}...")  # Show only first 300 chars
+            st.markdown(f"### {title}")
+
+            if thumbnail_url:
+                st.image(thumbnail_url, width=100)
+            else:
+                st.warning("🚨 No thumbnail available for this book.")
+
+            st.write(f"**📚 Author(s):** {authors}")
+            st.write(f"**🏷️ Category:** {categories}")
+            st.write(f"**⭐ Average Rating:** {average_rating} ({ratings_count} ratings)")
+            st.write(f"**📄 Description:** {description}")
             st.write("---")
