@@ -1,4 +1,6 @@
-streamlit 
-faiss-cpu 
-numpy 
-pickle5
+streamlit
+faiss-cpu
+numpy
+pandas
+scikit-learn
+pickle-mixin
