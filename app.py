@@ -5,6 +5,24 @@ import pickle
 from sklearn.metrics.pairwise import cosine_similarity
 from sentence_transformers import SentenceTransformer
 
+# Function to set background image
+def set_background(image_url):
+    """Set a full-screen background image using CSS."""
+    st.markdown(
+        f"""
+        <style>
+        .stApp {{
+            background: url("{image_url}") no-repeat center center fixed;
+            background-size: cover;
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
+# Set background image (replace with your image URL)
+set_background("https://images.pexels.com/photos/1831744/pexels-photo-1831744.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
+
 # File paths
 INDEX_FILE = "book_recommender.faiss"
 TITLE_FILE = "book_titles_thumbnail (1).pkl"
