@@ -2,15 +2,22 @@ Here's a **detailed README** for your **Book Recommendation System** using **Str
 
 ---
 
+
+
+
 # **📚 Book Recommendation System**
 An AI-powered book recommendation system built using **FAISS, Sentence Transformers, and Streamlit**. This app suggests similar books based on the user's selected title, providing details like authors, categories, ratings, descriptions, and cover images.
 
 ---
 
+
+
 # **Deployed Link**
 https://book-recommendation-system2.streamlit.app/
 
 ---
+
+
 
 
 ## **🌟 Features**
@@ -22,6 +29,8 @@ https://book-recommendation-system2.streamlit.app/
 
 ---
 
+
+
 ## **🛠️ Tech Stack**
 - **Python** – Core programming language  
 - **Streamlit** – For the user interface  
@@ -30,6 +39,9 @@ https://book-recommendation-system2.streamlit.app/
 - **Pickle** – For storing book metadata and embeddings  
 
 ---
+
+
+
 
 ## **📂 Folder Structure**
 ```
@@ -43,6 +55,8 @@ https://book-recommendation-system2.streamlit.app/
 ```
 
 ---
+
+
 
 ## **📥 Installation & Setup**
 ### **1️⃣ Clone the Repository**
@@ -70,6 +84,8 @@ streamlit run app.py
 
 ---
 
+
+
 ## **📊 How It Works**
 1. **Book Embeddings**  
    - The book dataset is **preprocessed** and converted into **sentence embeddings** using **Sentence Transformers**.
@@ -89,6 +105,8 @@ streamlit run app.py
 
 ---
 
+
+
 ## **📷 Screenshots**
 ### **Main Interface**
 ![Screenshot (63)](https://github.com/user-attachments/assets/bae90b31-7f23-4193-b06c-6926166c2da2)
@@ -98,6 +116,8 @@ streamlit run app.py
 
 
 ---
+
+
 
 ## **🛠️ Troubleshooting**
 **Error:** `No module named faiss`  
@@ -114,6 +134,8 @@ pip install faiss-cpu
 
 ---
 
+
+
 ## **📌 Future Improvements**
 🚀 **Hybrid Recommendations** – Combine content-based filtering with collaborative filtering.  
 🚀 **Better UI/UX** – Improve styling and responsiveness.  
@@ -122,10 +144,14 @@ pip install faiss-cpu
 
 ---
 
+
+
 ## **📜 License**
 This project is open-source and available under the **MIT License**.
 
 ---
+
+
 
 ## **🤝 Contributing**
 Want to contribute?  
@@ -136,6 +162,8 @@ Want to contribute?
 5. **Create a Pull Request**  
 
 ---
+
+
 
 ## **📩 Contact**
 💡 **Maintainer:** Your Name  
