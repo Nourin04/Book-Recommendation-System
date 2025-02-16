@@ -21,7 +21,7 @@ def set_background(image_url):
     )
 
 # Set background image (replace with your image URL)
-set_background("https://images.pexels.com/photos/1831744/pexels-photo-1831744.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
+set_background("https://images.pexels.com/photos/762686/pexels-photo-762686.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1https://images.pexels.com/photos/762686/pexels-photo-762686.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1")
 
 # File paths
 INDEX_FILE = "book_recommender.faiss"
