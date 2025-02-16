@@ -5,51 +5,61 @@ import pickle
 from sklearn.metrics.pairwise import cosine_similarity
 from sentence_transformers import SentenceTransformer
 
-# Load FAISS index
+# File paths
 INDEX_FILE = "book_recommender.faiss"
-TITLE_FILE = "book_titles_thumbnail.pkl"  # Updated to new file with thumbnails
+TITLE_FILE = "book_titles_thumbnail (1).pkl"
 EMBEDDINGS_FILE = "embeddings.pkl"
 
 @st.cache_resource
 def load_faiss_index():
-    index = faiss.read_index(INDEX_FILE)
-    return index
+    """Load FAISS index."""
+    return faiss.read_index(INDEX_FILE)
 
 @st.cache_data
 def load_data():
+    """Load book data and embeddings."""
     with open(TITLE_FILE, "rb") as f:
-        book_data = pickle.load(f)  # Load title + thumbnail data
+        book_data = pickle.load(f)
     with open(EMBEDDINGS_FILE, "rb") as f:
         embeddings = pickle.load(f)
     return book_data, np.array(embeddings)
 
-# Load models and data
+# Load FAISS index and book data
 faiss_index = load_faiss_index()
 book_data, embeddings = load_data()
 
 # Load Sentence Transformer model
-model = SentenceTransformer("all-MiniLM-L6-v2")
+@st.cache_resource
+def load_model():
+    return SentenceTransformer("all-MiniLM-L6-v2")
+
+model = load_model()
 
 # Streamlit UI
 st.title("📚 Book Recommendation System")
 
-# Get user input as a dropdown (autocomplete)
+# Book title dropdown for selection
 book_titles = [book["title"] for book in book_data]
-user_input = st.selectbox("Select a book to get recommendations:", book_titles)
+selected_book = st.selectbox("🔍 Select a book to find similar recommendations:", book_titles)
 
-if user_input:
-    # Get embedding for user input
-    user_embedding = model.encode(user_input).reshape(1, -1)
+if selected_book:
+    # Get embedding for selected book
+    book_idx = book_titles.index(selected_book)
+    book_embedding = embeddings[book_idx].reshape(1, -1)
 
     # Search in FAISS index
-    D, I = faiss_index.search(user_embedding, 5)
+    D, I = faiss_index.search(book_embedding, 5)
 
-    st.subheader("Recommended Books:")
+    st.subheader("📖 Recommended Books:")
     for i, idx in enumerate(I[0]):
         if idx != -1:
-            title = book_data[idx]["title"]
-            thumbnail = book_data[idx]["thumbnail"]
-            st.write(f"**{i+1}. {title}** (Distance: {D[0][i]:.4f})")
-            st.image(thumbnail, width=100)  # Display thumbnail
-        else:
-            st.write("No recommendations found.")
+            recommended_book = book_data[idx]
+            
+            # Display book details
+            st.markdown(f"### {recommended_book['title']}")
+            st.image(recommended_book['thumbnail'], width=100)
+            st.write(f"**📚 Author(s):** {', '.join(recommended_book['authors']) if recommended_book['authors'] else 'Unknown'}")
+            st.write(f"**🏷️ Category:** {', '.join(recommended_book['categories']) if recommended_book['categories'] else 'N/A'}")
+            st.write(f"**⭐ Average Rating:** {recommended_book['average_rating']} ({recommended_book['ratings_count']} ratings)")
+            st.write(f"**📄 Description:** {recommended_book['description'][:300]}...")  # Show only first 300 chars
+            st.write("---")
